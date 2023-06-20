@@ -1,4 +1,7 @@
 venv
 .DS_Store
 .idea/
-__pycache__/
+app/__pycache__/
+app/portal/__pycache__/
+app/portal/migrations/__pycache__/
+*.pyc

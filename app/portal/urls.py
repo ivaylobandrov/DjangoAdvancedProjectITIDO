@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import hello_world
+from portal.views import csv_view
 
 urlpatterns = [
-    path("", hello_world, name=""),
+    path("csv/", csv_view, name='csv-view'),
 ]
