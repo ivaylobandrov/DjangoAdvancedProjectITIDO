@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 import csv
 
+from portal.serializers import CSVSerializer
 
+
+@api_view(['GET'])
 def render_csv(request):
     csv_file_path = "portal/csv_files/data.csv"
 
@@ -10,5 +14,8 @@ def render_csv(request):
         reader = csv.reader(file)
         csv_data = list(reader)
 
-    # Pass the CSV data to the template
-    return render(request, 'render_csv.html', {'csv_data': csv_data})
+    # Serialize the CSV data
+    serializer = CSVSerializer({'csv_data': csv_data})
+
+    # Return the serialized data
+    return Response(serializer.data)

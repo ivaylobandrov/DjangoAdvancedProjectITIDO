@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "portal.apps.PortalConfig",
     "django_crontab",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
