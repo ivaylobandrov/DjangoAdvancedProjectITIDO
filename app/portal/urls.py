@@ -1,6 +1,6 @@
 from django.urls import path
-from portal.views import csv_view
+from portal import views
 
 urlpatterns = [
-    path("csv/", csv_view, name='csv-view'),
+    path("", views.render_csv, name='render_csv'),
 ]

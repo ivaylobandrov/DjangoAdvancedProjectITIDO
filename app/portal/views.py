@@ -1,21 +1,14 @@
-from django.http import HttpResponse
-from portal.models import CSVData
+from django.shortcuts import render
+import csv
 
 
-def csv_view(request):
-    # Retrieve the data from the model
-    data = CSVData.objects.all()
+def render_csv(request):
+    csv_file_path = "portal/csv_files/data.csv"
 
-    # Create a CSV string
-    csv_string = "Field1,Field2,Field3\n"  # Replace with appropriate header
+    # Open the CSV file
+    with open(csv_file_path, 'r') as file:
+        reader = csv.reader(file)
+        csv_data = list(reader)
 
-    for instance in data:
-        # Adjust the code below to match your model's field names
-        csv_string += f"{instance.field1},{instance.field2},{instance.field3}\n"
-
-    # Create the HTTP response with the CSV content
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="data.csv"'
-    response.write(csv_string)
-
-    return response
+    # Pass the CSV data to the template
+    return render(request, 'render_csv.html', {'csv_data': csv_data})

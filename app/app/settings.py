@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "portal.apps.PortalConfig",
+    "django_crontab",
 ]
 
 MIDDLEWARE = [
@@ -70,16 +71,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "app.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "csvdb",
-        "USER": "ivaylo",
-        "PASSWORD": "dbpassword",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "csvdb",
+#         "USER": "ivaylo",
+#         "PASSWORD": "dbpassword",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation
