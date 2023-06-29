@@ -72,16 +72,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "app.wsgi.application"
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "csvdb",
-#         "USER": "ivaylo",
-#         "PASSWORD": "dbpassword",
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "csvdb",
+        "USER": "ivaylo",
+        "PASSWORD": "dbpassword",
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
+}
 
 
 # Password validation
