@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -124,3 +125,15 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery Configuration
+CELERY_BROKER_URL = "amqp://localhost"  # Replace with the actual broker URL
+CELERY_RESULT_BACKEND = "rpc://"  # Replace with the actual result backend URL
+
+# Celery Beat Schedule
+CELERY_BEAT_SCHEDULE = {
+    'run_custom_command_task': {
+        'task': 'portal.tasks.run_custom_command',
+        'schedule': crontab(minute='*/1'),  # Executed every minute
+    },
+}
