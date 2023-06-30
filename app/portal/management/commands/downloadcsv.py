@@ -8,7 +8,7 @@ import os
 
 
 class Command(BaseCommand):
-    help = 'Download CSV file using Selenium'
+    help = "Download CSV file using Selenium"
 
     def handle(self, *args, **options):
         # Specify the path to the Chrome WebDriver
@@ -55,11 +55,11 @@ class Command(BaseCommand):
             original_file_path = os.path.join(download_path, latest_file)
 
             # Rename the file to 'data.csv'
-            new_file_path = os.path.join(download_path, 'data.csv')
+            new_file_path = os.path.join(download_path, "data.csv")
             os.rename(original_file_path, new_file_path)
 
         finally:
             # Close the driver to release resources
             driver.quit()
 
-        self.stdout.write(self.style.SUCCESS('CSV file downloaded successfully.'))
+        self.stdout.write(self.style.SUCCESS("CSV file downloaded successfully."))
