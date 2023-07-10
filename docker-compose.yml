@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    env_file: .env
+    volumes:
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+    networks:
+      - mynetwork
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - '8000:8000'
+    command: >
+      sh -c "python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+networks:
+ mynetwork:

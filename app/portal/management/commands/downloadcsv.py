@@ -12,10 +12,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Specify the path to the Chrome WebDriver
-        webdriver_path = "/opt/homebrew/bin/chromedriver"
+        webdriver_path = os.environ.get("WEBDRIVER_PATH", "/opt/homebrew/bin/chromedriver")
 
         # Specify the download directory for the CSV file
-        download_path = "/Users/ivaylobandrov/Desktop/AdvanceDjangoProjectITIDO/app/portal/csv_files"
+        download_path = os.environ.get("DOWNLOAD_PATH", "/app/portal/csv_files")
 
         # Create the download directory if it doesn't exist
         os.makedirs(download_path, exist_ok=True)
