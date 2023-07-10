@@ -136,8 +136,12 @@ CELERY_RESULT_BACKEND = "rpc://"
 
 # Celery Beat Schedule
 CELERY_BEAT_SCHEDULE = {
-    'run_custom_command_task': {
-        'task': 'portal.tasks.run_custom_command',
-        'schedule': crontab(minute='*/1'),  # Executed every minute
+    'download_csv_task': {
+        'task': 'portal.tasks.download_csv_task',
+        'schedule': 300,
+    },
+    'import_csv_task': {
+        'task': 'portal.tasks.import_csv_task',
+        'schedule': 300,
     },
 }

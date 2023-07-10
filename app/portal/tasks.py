@@ -3,5 +3,9 @@ from django.core.management import call_command
 
 
 @shared_task
-def run_custom_command():
-    call_command("downloadcsv")
+def download_csv_task():
+    call_command('downloadcsv')
+
+@shared_task
+def import_csv_task():
+    call_command('importcsv')
