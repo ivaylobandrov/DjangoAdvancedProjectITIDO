@@ -26,5 +26,13 @@ services:
     networks:
       - mynetwork
 
+  rabbitmq:
+    image: rabbitmq:3.9
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    networks:
+      - mynetwork
+
 networks:
  mynetwork:

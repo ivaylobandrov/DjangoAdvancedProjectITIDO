@@ -131,8 +131,8 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Celery Configuration
-CELERY_BROKER_URL = "amqp://localhost"  # Replace with the actual broker URL
-CELERY_RESULT_BACKEND = "rpc://"  # Replace with the actual result backend URL
+CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq:5672/"
+CELERY_RESULT_BACKEND = "rpc://"
 
 # Celery Beat Schedule
 CELERY_BEAT_SCHEDULE = {
