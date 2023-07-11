@@ -8,6 +8,9 @@ import os
 
 
 class Command(BaseCommand):
+    """Django custom command which downloads csv file from a specific url
+    and saves it into a given path"""
+
     help = "Download CSV file using Selenium"
 
     def handle(self, *args, **options):

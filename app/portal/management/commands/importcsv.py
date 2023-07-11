@@ -7,6 +7,8 @@ from portal.models import PricesAndQuantities, BlockProduct, HourProducts
 
 
 def validate_date_format(value):
+    """ Function to validate the date format."""
+
     try:
         date_str = value[-5:]
 
@@ -28,6 +30,7 @@ def validate_date_format(value):
 def convert_price_to_decimal_number(
     number, decimal_separator=",", thousand_separator=" "
 ):
+    """Function to convert the price to decimal number since the price in the csv files is in different format."""
     cleaned_number = number.replace(thousand_separator, "").replace(
         decimal_separator, "."
     )
@@ -42,6 +45,7 @@ def convert_price_to_decimal_number(
 
 
 def convert_volumes_to_decimal_number(value):
+    """Function to convert the volume to decimal number since the volume in the csv files is in different format."""
     try:
         cleaned_value = value.replace(" ", "").replace(",", ".")
 
@@ -54,6 +58,8 @@ def convert_volumes_to_decimal_number(value):
 
 
 class Command(BaseCommand):
+    """Django custom command to import csv data into the database."""
+
     help = "Import CSV data into the CSVData model"
 
     def handle(self, *args, **options):
