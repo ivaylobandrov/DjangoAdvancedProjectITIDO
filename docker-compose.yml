@@ -20,7 +20,7 @@ services:
     ports:
       - '8000:8000'
     command: >
-      sh -c "python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py runserver 0.0.0.0:8000"
+      sh -c "python app/manage.py makemigrations && python app/manage.py migrate && python app/manage.py runserver 0.0.0.0:8000 && celery -A app worker --loglevel=info && celery -A app beat --loglevel=info"
     depends_on:
       - db
     networks:
