@@ -39,9 +39,14 @@ def average_price_and_energy(request):
     start_date = request.GET.get("start_date")
     end_date = request.GET.get("end_date")
 
-    average_price = PricesAndQuantities.objects.filter(date__range=[start_date, end_date]).aggregate(Avg("price_bgn_mwh"))
+    average_price = PricesAndQuantities.objects.filter(
+        date__range=[start_date, end_date]
+    ).aggregate(Avg("price_bgn_mwh"))
     consumed_energy = PricesAndQuantities.objects.filter(
-        date__range=[start_date, end_date]).aggregate(Avg("volume_mwh"))
+        date__range=[start_date, end_date]
+    ).aggregate(Avg("volume_mwh"))
 
-    return Response({"average_price": average_price["price_bgn_mwh__avg"]},
-                    {"consumed_energy": consumed_energy["volume_mwh__avg"]})
+    return Response(
+        {"average_price": average_price["price_bgn_mwh__avg"]},
+        {"consumed_energy": consumed_energy["volume_mwh__avg"]},
+    )

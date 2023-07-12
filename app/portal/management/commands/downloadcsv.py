@@ -15,7 +15,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Specify the path to the Chrome WebDriver
-        webdriver_path = os.environ.get("WEBDRIVER_PATH", "/opt/homebrew/bin/chromedriver")
+        webdriver_path = os.environ.get(
+            "WEBDRIVER_PATH", "/opt/homebrew/bin/chromedriver"
+        )
 
         # Specify the download directory for the CSV file
         download_path = os.environ.get("DOWNLOAD_PATH", "/app/portal/csv_files")
@@ -28,20 +30,27 @@ class Command(BaseCommand):
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_experimental_option("prefs", {
-            "download.default_directory": download_path,
-            "download.prompt_for_download": False,
-            "download.directory_upgrade": True,
-            "safebrowsing.enabled": True,
-            "download.default_filename": "data.csv"
-        })
+        chrome_options.add_experimental_option(
+            "prefs",
+            {
+                "download.default_directory": download_path,
+                "download.prompt_for_download": False,
+                "download.directory_upgrade": True,
+                "safebrowsing.enabled": True,
+                "download.default_filename": "data.csv",
+            },
+        )
 
         # Create a new instance of the Chrome driver
-        driver = webdriver.Chrome(service=Service(executable_path=webdriver_path), options=chrome_options)
+        driver = webdriver.Chrome(
+            service=Service(executable_path=webdriver_path), options=chrome_options
+        )
 
         try:
             # Open the website URL
-            driver.get("https://ibex.bg/%D0%B4%D0%B0%D0%BD%D0%BD%D0%B8-%D0%B7%D0%B0-%D0%BF%D0%B0%D0%B7%D0%B0%D1%80%D0%B0/%D0%BF%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%BD-%D1%81%D0%B5%D0%B3%D0%BC%D0%B5%D0%BD%D1%82-%D0%B4%D0%B5%D0%BD-%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4/%D0%BF%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%BD-%D1%81%D0%B5%D0%B3%D0%BC%D0%B5%D0%BD%D1%82-%D0%B4%D0%B5%D0%BD-%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4-2/")  # Replace with the actual website URL
+            driver.get(
+                "https://ibex.bg/%D0%B4%D0%B0%D0%BD%D0%BD%D0%B8-%D0%B7%D0%B0-%D0%BF%D0%B0%D0%B7%D0%B0%D1%80%D0%B0/%D0%BF%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%BD-%D1%81%D0%B5%D0%B3%D0%BC%D0%B5%D0%BD%D1%82-%D0%B4%D0%B5%D0%BD-%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4/%D0%BF%D0%B0%D0%B7%D0%B0%D1%80%D0%B5%D0%BD-%D1%81%D0%B5%D0%B3%D0%BC%D0%B5%D0%BD%D1%82-%D0%B4%D0%B5%D0%BD-%D0%BD%D0%B0%D0%BF%D1%80%D0%B5%D0%B4-2/"
+            )  # Replace with the actual website URL
 
             # Locate the button using the onclick attribute
             button = driver.find_element(By.XPATH, "//button[@onclick='csvFunc()']")

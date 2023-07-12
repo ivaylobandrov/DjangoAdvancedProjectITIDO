@@ -7,7 +7,7 @@ from portal.models import PricesAndQuantities, BlockProduct, HourProducts
 
 
 def validate_date_format(value):
-    """ Function to validate the date format."""
+    """Function to validate the date format."""
 
     try:
         date_str = value[-5:]
